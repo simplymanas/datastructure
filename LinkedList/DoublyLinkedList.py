@@ -12,7 +12,7 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
     
-    def addBefore(self, value):
+    def add_before(self, value):
         ref = Node(value)
 
         if None == self.head:
@@ -22,24 +22,40 @@ class DoublyLinkedList:
             self.head.previous = ref
         self.head = ref
 
+    def add_after(self, value):
+        ref = Node(value)
+
+        if None == self.head:
+            self.head = ref
+        else:
+            self.tail.next = ref
+            ref.previous = self.tail
+        self.tail = ref
+
     def print_forward(self):
-            current = self.head
-            while current is not None:
-                print(current.value)
-                current = current.next
+        print("Forward: ->")
+        current = self.head
+        while current is not None:
+            print(current.value)
+            current = current.next
 
     def print_backward(self):
-            current = self.tail
-            while current is not None:
-                print(current.value)
-                current = current.previous
+        print("Backward: ->")
+        current = self.tail
+        while current is not None:
+            print(current.value)
+            current = current.previous
         
 
 print("printing the Doubly Linkedlist")
 dlist =  DoublyLinkedList()
-dlist.addBefore("A")
-dlist.addBefore("B")
-dlist.addBefore("C")
-# dlist.print_forward()
-dlist.print_backward()
+
+dlist.add_before("A")   # A
+dlist.add_before("B")   # B->A
+dlist.add_before("C")   # C->B->A
+dlist.add_after("D")    # C->B->A->D
+dlist.add_after("E")    # C->B->A->D->E
+
+dlist.print_forward()  # C->B->A->D->E
+dlist.print_backward() # E->D->A->B->C
 
