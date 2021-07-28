@@ -31,7 +31,18 @@ class LinkedList:
             current = self.head
             ref.next = current
             self.head = ref
-           
+
+    def addToBack(self, value):
+        ref = Node(value)
+
+        if None == self.head:
+            self.tail = ref
+            ref.tail = None
+            ref.next = None
+        else:
+            current = self.tail
+            current.next = ref
+            self.tail = ref   
 
     def print(self):
         current = self.head
@@ -46,6 +57,7 @@ llist.add("5")
 llist.add("6")
 llist.add("7")
 llist.addToFront("2")
-
 llist.addToFront("4")
+llist.addToBack("1")
+
 llist.print()
